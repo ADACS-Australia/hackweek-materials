@@ -1,0 +1,6 @@
+install.packages("tidyverse")
+install.packages("astro")
+install.packages("devtools")
+library(devtools)
+install_github("asgr/Rwcs")
+install_github("asgr/Rfits")
