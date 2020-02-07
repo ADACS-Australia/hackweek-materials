@@ -1,0 +1,2 @@
+ipython[notebook] # needed for Python II
+rise # needed for Python II
