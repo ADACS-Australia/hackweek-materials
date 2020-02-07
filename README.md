@@ -16,7 +16,7 @@ TBC
 TBC
 
 ## Python II
-TBC
+See [README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/python-II/README.md)
 
 ## Software Dev
 TBC
