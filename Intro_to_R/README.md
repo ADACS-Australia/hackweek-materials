@@ -11,6 +11,7 @@ RStudio: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v
 You will need R (the programming language) and preferably RStudio (an IDE for R) installed.
 - Go to [CRAN](https://cran.r-project.org/index.html), the Comprehensive R Archive Network to downlaod R.
 - You can download the RStudio IDE [here](https://rstudio.com/products/rstudio/download/#download).
+- You can also follow this online tutorial: https://learnr-examples.shinyapps.io/ex-setup-r/ 
 
 The packages we will use throughout the tutorial are:
 - tidyverse
