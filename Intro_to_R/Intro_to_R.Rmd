@@ -1,0 +1,156 @@
+---
+title: "Introduction to R for astronomy"
+author: "Rebecca Lange"
+institute: "ADACS + CIC"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    nature:
+       beforeInit: "macros.js"
+       highlightStyle: github
+       countIncrementalSlides: false
+       highlightLines: true
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+# Why ![:scale 8%](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png) + ![:scale 16%](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg) `r emo::ji("star")`
+
+( `r emo::ji("star")` may be a slightly biased)
+
+--
+
+- free, open source
+--
+
+- very good statistical packages
+--
+
+- easy plotting
+--
+
+- great package ecosystem
+--
+
+- as a researcher (not developer) I find the syntax easy to understand
+--
+
+- RStudio 
+--
+
+  - It's a great IDE with many features to make your life easy
+  - RStudio employes developers who create and continiously support/maintain/develop major packages in the R ecosystem
+  - The `tidyverse` and pipes ` %>% `
+  - `markdown` support for creating report/slides/books...
+
+---
+class: inverse, center, middle
+
+#R Studio
+
+---
+class:center, middle
+
+Let's have a quick [tour](https://github.com/CurtinIC/cic-swc-material/blob/master/RStudio_interface.pdf) of the RStudio interface.
+
+---
+class: inverse, center, middle
+
+# R Basics
+
+---
+
+# Objets
+
+---
+
+# Vectors
+
+---
+
+# Data Types
+
+---
+
+# Lists
+
+---
+
+# Packages
+
+---
+
+# R Code
+
+Models for `lm` are specified symbolically. A typical model has the form `response ~ terms` where `response` is the (numeric) response vector and `terms` is a series of terms which specifies a linear predictor for `response`. 
+
+For more info check out the documentation with `?lm`.
+
+```{r comment='#'}
+# a boring regression
+fit = lm(dist ~ speed, data = cars)
+coef(summary(fit))
+```
+
+
+---
+
+# R Plots - base R
+
+```{r cars, fig.height=4, dev='svg'}
+par(mar = c(4, 4, 1, .1))
+plot(cars, pch = 19, col = 'darkgray', las = 1)
+abline(fit, lwd = 2)
+```
+
+
+---
+
+# R Plots - ggplot2
+
+```{r , fig.height=4, dev='svg'}
+
+ggplot(data = cars, aes(x = speed, y = dist)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+
+```
+
+
+---
+# R for astronomy
+
+https://asaip.psu.edu/resources/cran-packages-in-r-for-astronomy/
+
+https://github.com/hwborchers/zaRastro
+
+https://github.com/asgr?tab=repositories
+
+---
+
+# Calling Python from R
+
+something
+
+--
+# and vice versa
+
+sometingh else
+
+---
+# Tutorials
+
+Follow the `learnr` examples in the repo >
+- open the Rmd file you are interested in
+- click the `Run Document` button at the top
+
+## Cheatsheets
+
+https://rstudio.com/resources/cheatsheets/ 
+
+## External
+
+https://astrostatistics.psu.edu/RLectures/R_tutorials.pdf
+
