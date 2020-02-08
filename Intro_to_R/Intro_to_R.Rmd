@@ -5,11 +5,14 @@ institute: "ADACS + CIC"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
+    css: [default, metropolis]
+    # chakra: libs/remark-latest.min.js # uncomment to use offfline
     nature:
-       beforeInit: "macros.js"
-       highlightStyle: github
-       countIncrementalSlides: false
-       highlightLines: true
+     beforeInit: "macros.js"
+     highlightStyle: github
+     countIncrementalSlides: false
+     # highlightLines: true
+       
 ---
 
 ```{r setup, include=FALSE}
@@ -64,17 +67,124 @@ class: inverse, center, middle
 
 # Objets
 
+Values and data are stored in objects.
+R uses a special assignment operator `<-`
+
+```{r}
+a <- 5
+```
+
+## Special Values
+
+- Missing Values: `NA` (Not Available)
+- Not a Number `NaN`, e.g. `0/0`
+- Infinity `Inf`, e.g. `1/0`
+
 ---
 
+## Data Types
+
+-    character: `"a"`, `"swc"`
+-    numeric: `2`, `15.5`
+-    integer: `2L` (the L tells R to store this as an integer)
+-    logical: `TRUE`, `FALSE`, or for the lazy typer, `T`, `F`
+-    complex: `1+4i` (complex numbers with real and imaginary parts)
+
+## Data Structures
+
+R has many data structures. These include
+
+-    atomic vector
+-    list
+-    matrix
+-    data frame
+-    factors
+
+---
 # Vectors
 
+.pull-left[
+To create vectors use the `c()` function to concatinate values.
+
+```{r}
+a <- c(5,4,1:3)
+a
+```
+
+Vectors will coerce all elements to the same type
+```{r}
+a <- c(T,F,3,2,1)
+b <- c(a,'4')
+b
+```
+]
+
+.pull-right[
+# Matrix
+In R matrices are an **extension of the numeric or character vectors**. 
+
+They are not a separate type of object but simply an atomic vector with dimensions; the number of rows and columns. 
+
+As with atomic vectors, the elements of a matrix must be of the same data type.<sup>1</sup>
+
+```{r}
+m <- matrix(data = 1:4, nrow = 2, ncol = 2)
+m
+```
+
+]
+.footnote[1 - [SWC Intro to R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)]
 ---
-
-# Data Types
-
----
-
 # Lists
+
+.pull-left[
+Lists are recurring vectors, that is each element of a list can be of a different data type
+```{r}
+x <- list(c(1,2), "a", TRUE, 1+4i)
+x
+```
+]
+
+.pull-right[
+Elements of a list can be named
+
+```{r}
+xlist <- list(a = "Karthik Ram", 
+              b = 1:10, 
+              data = head(iris))
+xlist
+```
+]
+---
+# Data Frame
+.pull-left[
+A dataframe is secial type of list where each element:
+- is of the same length
+- contains the same data type
+- is named
+
+This is results in a 2-D data structure like a spreadsheet or SQL table:
+```{r}
+dat <- data.frame(id = letters[1:10], x = 1:10, y = 11:20)
+dat
+```
+
+]
+
+--
+.pull-right[
+#Tibble
+
+The tidyverse version of a dataframe.
+To quote the [documentation](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html):
+> They keep the features that have stood the test of time, and drop the features that used to be convenient but are now frustrating (i.e. converting character vectors to factors).
+
+```{r}
+as.tibble(dat)
+```
+
+
+]
 
 ---
 
@@ -84,40 +194,102 @@ class: inverse, center, middle
 
 # R Code
 
-Models for `lm` are specified symbolically. A typical model has the form `response ~ terms` where `response` is the (numeric) response vector and `terms` is a series of terms which specifies a linear predictor for `response`. 
+## Functions
+You call functions in R with `functioname(arg1,arg,...)`
 
-For more info check out the documentation with `?lm`.
+- R offers *tab complete* for functions. 
+- In RStudio: once the cursor is inside the round brackets you can press tab again to see the argument options available.
+- The output of the function will be printed to screen, unless you save the output to an object.
+
+```{r } 
+a <- runif(5)
+a
+```
+
+- R is *vectorised* and most functions will work on simple vectors by evaluating each element.
+
+```{r } 
+sqrt(a)
+```
+
+---
+# Example
+```{r, echo=F}
+knitr::kable(head(mpg), format = 'html')
+```
 
 ```{r comment='#'}
 # a boring regression
-fit = lm(dist ~ speed, data = cars)
+fit = lm(hwy ~ displ, data = mpg)
 coef(summary(fit))
 ```
-
-
 ---
 
 # R Plots - base R
 
 ```{r cars, fig.height=4, dev='svg'}
 par(mar = c(4, 4, 1, .1))
-plot(cars, pch = 19, col = 'darkgray', las = 1)
+plot(mpg$displ, mpg$hwy, 
+     xlab = "Engine Displacement", ylab = "Hwy MPG",  
+     pch = 19, col = 'darkgray', las = 1)
 abline(fit, lwd = 2)
 ```
 
-
 ---
-
 # R Plots - ggplot2
 
-```{r , fig.height=4, dev='svg'}
+```{r, eval=FALSE}
 
-ggplot(data = cars, aes(x = speed, y = dist)) + 
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE)
 
 ```
 
+```{r , fig.height=4, dev='svg', echo=F}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)+
+  xlim(c(min(mpg$displ),7.1))
+```
+---
+# R Plots - ggplot2
+```{r, eval=FALSE}
+
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+
+```
+
+```{r , fig.height=4, dev='svg', echo=FALSE}
+
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)+
+  xlim(c(min(mpg$displ),7.1)) +
+  annotate("path",
+           x=6+1.05*cos(seq(0,2*pi,length.out=100)),
+           y=24+3*sin(seq(0,2*pi,length.out=100)), colour = "red", size = 1.2) 
+```
+
+---
+# R Plots - ggplot2
+```{r, eval=FALSE}
+ggplot(data = mpg, aes(x = displ, y = hwy, colour = class)) + 
+  geom_point()
+```
+
+```{r , fig.height=4, dev='svg', echo=FALSE}
+
+ggplot(data = mpg, aes(x = displ, y = hwy, colour = class)) + 
+  geom_point() +
+  xlim(c(min(mpg$displ),7.1))
+```
+---
+class:center, middle
+
+Explore more ggplot goodness in this [flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1)
 
 ---
 # R for astronomy
@@ -130,21 +302,24 @@ https://github.com/asgr?tab=repositories
 
 ---
 
-# Calling Python from R
+## Calling Python from R
 
 something
 
 --
-# and vice versa
+## and vice versa
 
 sometingh else
 
 ---
 # Tutorials
 
-Follow the `learnr` examples in the repo >
+Follow the `learnr` examples in the repo:
 - open the Rmd file you are interested in
 - click the `Run Document` button at the top
+
+The `learnr` tutorials are based on the primers developed by RStudio for rstudio.cloud.
+You can find them all on github: https://github.com/rstudio-education/primers or by visiting https://rstudio.cloud/ 
 
 ## Cheatsheets
 
