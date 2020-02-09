@@ -428,18 +428,21 @@ use_condaenv("myenv")
 ---
 # Tutorials
 
-Follow the `learnr` examples in the repo:
+Follow the `learnr` examples in the Tutorials folder:
 - open the Rmd file you are interested in
 - click the `Run Document` button at the top
 
-The `learnr` tutorials are based on the primers developed by RStudio for rstudio.cloud.
+The `learnr` tutorials are a selection of the primers developed by RStudio for rstudio.cloud.
+
 You can find them all on github: https://github.com/rstudio-education/primers or by visiting https://rstudio.cloud/ 
 
-## Cheatsheets
+**Cheatsheets**
 
 https://rstudio.com/resources/cheatsheets/ 
 
-## External
+### External - Penn State Astrostats
 
+https://astrostatistics.psu.edu/datasets/index.html
+
+Labs from the summer school for astrostats X - 2014
 https://astrostatistics.psu.edu/RLectures/R_tutorials.pdf
-
