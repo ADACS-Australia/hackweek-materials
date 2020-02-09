@@ -1,6 +1,6 @@
 # hackweek-materials
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ADACS-Australia/hackweek-materials/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ADACS-Australia/hackweek-materials/lab)
 
 Collection of tutorials and materials for the 2020 ADACS astrocomp hack week.
 
