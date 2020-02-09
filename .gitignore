@@ -8,3 +8,5 @@ Intro_to_R/*.Rproj
 Intro_to_R/Intro_to_R_files/
 Intro_to_R/Tutorials/
 Intro_to_R/*.html
+
+.vscode/*
