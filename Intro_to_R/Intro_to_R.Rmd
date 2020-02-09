@@ -1,5 +1,5 @@
 ---
-title: "Introduction to R for astronomy"
+title: "Introduction to R"
 author: "Rebecca Lange"
 institute: "ADACS + CIC"
 date: "`r Sys.Date()`"
@@ -20,9 +20,9 @@ library(tidyverse)
 library(gapminder)
 ```
 
-# Why ![:scale 8%](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png) + ![:scale 16%](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg) `r emo::ji("star")`
+# Why ![:scale 8%](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png) + ![:scale 16%](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg)
 
-( `r emo::ji("star")` may be a slightly biased)
+.footnote[ `r emo::ji("star")` may be a biased view]
 
 --
 
@@ -30,24 +30,24 @@ library(gapminder)
 --
 
 - very good statistical packages
---
-
-- easy plotting
---
 
 - great package ecosystem
---
 
 - as a researcher (not developer) I find the syntax easy to understand
 --
 
-- RStudio 
+- great graphics from static to interactive plots, animations, R Shiny
+
+- `markdown` support for creating report/slides/books...
+
+- The `tidyverse` and pipes ` %>% `
 --
 
+- RStudio 
+--
+  
   - It's a great IDE with many features to make your life easy
   - RStudio employes developers who create and continiously support/maintain/develop major packages in the R ecosystem
-  - The `tidyverse` and pipes ` %>% `
-  - `markdown` support for creating report/slides/books...
 
 ---
 class: inverse, center, middle
@@ -269,7 +269,7 @@ knitr::kable(head(mpg), format = 'html')
 ```
 
 ```{r comment='#'}
-# a boring regression
+# a boring regression - written as y proportional to x
 fit = lm(hwy ~ displ, data = mpg)
 coef(summary(fit))
 ```
@@ -277,10 +277,10 @@ coef(summary(fit))
 # R Plots - base R
 
 ```{r cars, fig.height=4, dev='svg'}
-par(mar = c(4, 4, 1, .1))
 plot(mpg$displ, mpg$hwy, 
      xlab = "Engine Displacement", ylab = "Hwy MPG",  
      pch = 19, col = 'darkgray', las = 1)
+
 abline(fit, lwd = 2)
 ```
 
@@ -411,16 +411,20 @@ https://github.com/hwborchers/zaRastro
 https://github.com/asgr?tab=repositories
 
 ---
-.pull-left[
-# Call Python from R
-something
-]
---
-.pull-right[
-# and vice versa
- sometingh else
-]
+# Call Python from R ![:scale 10%](https://rstudio.github.io/reticulate/images/reticulated_python.png) 
 
+`Reticulate` package: https://rstudio.github.io/reticulate/
+
+```{r, eval=F}
+library(reticulate)
+# Specify Python version
+use_python("/usr/local/bin/python")
+# use virtualenv
+use_virtualenv("myenv")
+# use conda env
+use_condaenv("myenv")
+```
+![:scale 50%](img/type-conversion.png)
 ---
 # Tutorials
 
