@@ -4,13 +4,11 @@ You can run the content in RStudio via binder. Just click the badge below to sta
 
 RStudio: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ADACS-Australia/hackweek-materials/master?urlpath=rstudio)
 
----
-
 This session includes slides (made using R markdown) and tutorials. The tutorials are a selection of the primers developed by RStudio for rstudio.cloud. All credits go to them.
 
 You can find them all on github: https://github.com/rstudio-education/primers or by visiting https://rstudio.cloud/
 
-
+---
 
 ## Requirements
 
@@ -30,15 +28,17 @@ additional:
 - Rwcs
 
 To install these open RStudio and type the following in the panel called 'Console':
-
+```R
 install.packages("tidyverse")
 install.packages("devtools")
 install.packages("learnr")
 install.packages("xaringan")
 install.packages("gapminder")
+```
 
-To isntall the additional packages run:
-
+To install the additional packages run:
+```R
 library(devtools)
 install_github("asgr/Rwcs")
 install_github("asgr/Rfits")
+```
