@@ -5,7 +5,7 @@ institute: "ADACS + CIC"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: [default, metropolis]
+    css: [default, ninjutsu, metropolis]
     # chakra: libs/remark-latest.min.js # uncomment to use offfline
     nature:
      beforeInit: "macros.js"
@@ -17,6 +17,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(gapminder)
 ```
 
 # Why ![:scale 8%](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png) + ![:scale 16%](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg) `r emo::ji("star")`
@@ -81,25 +82,26 @@ a <- 5
 - Infinity `Inf`, e.g. `1/0`
 
 ---
-
-## Data Types
+.pull-left[
+# Data Types
 
 -    character: `"a"`, `"swc"`
 -    numeric: `2`, `15.5`
 -    integer: `2L` (the L tells R to store this as an integer)
 -    logical: `TRUE`, `FALSE`, or for the lazy typer, `T`, `F`
 -    complex: `1+4i` (complex numbers with real and imaginary parts)
-
-## Data Structures
+]
+.pull-right[
+# Data Structures
 
 R has many data structures. These include
 
 -    atomic vector
--    list
 -    matrix
+-    list
 -    data frame
 -    factors
-
+]
 ---
 # Vectors
 
@@ -131,9 +133,9 @@ As with atomic vectors, the elements of a matrix must be of the same data type.<
 m <- matrix(data = 1:4, nrow = 2, ncol = 2)
 m
 ```
-
-]
 .footnote[1 - [SWC Intro to R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)]
+]
+
 ---
 # Lists
 
@@ -171,7 +173,6 @@ dat
 
 ]
 
---
 .pull-right[
 #Tibble
 
@@ -182,14 +183,41 @@ To quote the [documentation](https://cran.r-project.org/web/packages/tibble/vign
 ```{r}
 as.tibble(dat)
 ```
-
-
 ]
+---
+# Factors
+Factors represent **categorical data** and can be ordered or unordered.
+
+Factors are **stored as integers**, and have labels associated with these unique integers. 
+
+Once created, factors can only contain a **pre-defined set values**, known as **levels**. By default, R always sorts levels in alphabetical order:
+
+```{r}
+food <- factor(c("low", "high", "medium", "high", "low", "medium", "low"))
+levels(food)
+food <- factor(food, levels = c("low", "medium", "high"))
+levels(food)
+```
+
+.footnote[[SWC factor lesson](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html)]
+---
+# Packages - CRAN
+![cran-img](img/cran.png)
+---
+# Packages - Github
+![github-img](img/github.png)
 
 ---
+# Tidyverse
+![tidy-img](img/tidyverse.png)
 
-# Packages
+---
+# Tidyverse
+![tidy-img](img/tidy-packages.png)
+---
+# Tidy Data
 
+![img](img/tidy-data.png)
 ---
 
 # R Code
@@ -197,7 +225,7 @@ as.tibble(dat)
 ## Functions
 You call functions in R with `functioname(arg1,arg,...)`
 
-- R offers *tab complete* for functions. 
+- R offers *tab completion* for functions. 
 - In RStudio: once the cursor is inside the round brackets you can press tab again to see the argument options available.
 - The output of the function will be printed to screen, unless you save the output to an object.
 
@@ -287,10 +315,71 @@ ggplot(data = mpg, aes(x = displ, y = hwy, colour = class)) +
   xlim(c(min(mpg$displ),7.1))
 ```
 ---
+# R Plots - ggplot2
+```{r, fig.height=5}
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+---
+# R Plots - ggplot2
+```{r, fig.height=5}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() + 
+  scale_x_log10()
+```
+---
+# R Plots - ggplot2
+```{r, fig.height=5}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point(alpha=0.5) + 
+  scale_x_log10() +
+  facet_wrap(~continent)
+```
+
+---
 class:center, middle
 
 Explore more ggplot goodness in this [flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1)
 
+---
+# Transform data with the Tidyeverse
+
+.pull-left[
+## ![:scale 20%](img/dplyr.png)
+
+`select()` - extract .blue[variables] (i.e. by column names)
+
+`filter()` - extract .green[cases]
+
+`arrange()` - reorder .green[cases]
+
+`summarise()` - summarise .blue[variables]
+
+`group_by()` - group .green[cases]
+
+`mutate()` - create new .blue[variables]
+]
+.pull-right[
+## Pipe %>% 
+
+1.	 Filter babynames to just boys born in 2015
+2.	 Select the name and n columns from the result
+3.	 Arrange those columns so that the most popular names appear near the top.
+
+![pipe-img](img/pipe.png)
+
+![:scale 80%](img/pipe-short.png)
+]
+
+---
+# Tidy data
+.center[
+![:scale 70%](img/group-sum.png) 
+]
+--
+.center[
+![:scale 70%](img/mutate.png)
+]
 ---
 # R for astronomy
 
@@ -301,15 +390,15 @@ https://github.com/hwborchers/zaRastro
 https://github.com/asgr?tab=repositories
 
 ---
-
-## Calling Python from R
-
+.pull-left[
+# Call Python from R
 something
-
+]
 --
-## and vice versa
-
-sometingh else
+.pull-right[
+# and vice versa
+ sometingh else
+]
 
 ---
 # Tutorials
