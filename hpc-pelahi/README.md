@@ -10,6 +10,8 @@ For these hands on sessions, if you wish to run on your own machine, you will ne
 
 Lecture materials are found [here](https://docs.google.com/presentation/d/1ms1-31meztR6hQSq6c8DsOJd33bUvOoN7sqdRgLH_ag/edit?usp=sharing)
 
+**Before the lecture would be helpful if this [survey](https://www.surveymonkey.com/r/S7T8VY3) could be completed.**
+
 ## Ozstar Info
 
 To run code on ozstar, please try the following:
