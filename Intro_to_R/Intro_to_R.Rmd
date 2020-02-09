@@ -17,23 +17,21 @@ output:
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(gapminder)
+```
+
+# Why ![:scale 8%](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png) + ![:scale 16%](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg)
+
+.footnote[ `r emo::ji("star")` may be a biased view]
+
 --
 
 - free, open source
 --
 
 - very good statistical packages
---
-
-- easy plotting
---
 
 - great package ecosystem
---
-=======
-
-- great package ecosystem
->>>>>>> upstream/master
 
 - as a researcher (not developer) I find the syntax easy to understand
 --
