@@ -2,6 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# Ignore all checkpoints
+**/.ipynb_checkpoints/
+
+.vscode/*
 Intro_to_R/.ipynb_checkpoints/
 Intro_to_R/*.Rproj
 Intro_to_R/Intro_to_R_files/
