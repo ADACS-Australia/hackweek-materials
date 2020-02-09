@@ -1,38 +1,44 @@
-# Specifying an R environment with a runtime.txt file
+# Intro to R for astronomy
 
-Info copied from https://github.com/binder-examples/r
+You can run the content in RStudio via binder. Just click the badge below to start it up.
+
+RStudio: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ADACS-Australia/hackweek-materials/master?urlpath=rstudio)
+
+This session includes slides (made using R markdown) and tutorials. The tutorials are a selection of the primers developed by RStudio for rstudio.cloud. All credits go to them.
+
+You can find them all on github: https://github.com/rstudio-education/primers or by visiting https://rstudio.cloud/
 
 ---
 
-Binder supports using R and RStudio, with libraries pinned to a specific 
-snapshot on [MRAN](https://mran.microsoft.com/documents/rro/reproducibility).
+## Requirements
 
-You need to have a `runtime.txt` file that is formatted like:
+You will need R (the programming language) and preferably RStudio (an IDE for R) installed.
+- Go to [CRAN](https://cran.r-project.org/index.html), the Comprehensive R Archive Network to downlaod R.
+- You can download the RStudio IDE [here](https://rstudio.com/products/rstudio/download/#download).
+- You can also follow this online tutorial: https://learnr-examples.shinyapps.io/ex-setup-r/ 
 
+The packages we will use throughout the tutorial are:
+- tidyverse
+- devtools
+- learnr
+- xaringan
+- gapminder
+additional:
+- Rfits
+- Rwcs
+
+To install these open RStudio and type the following in the panel called 'Console':
+```R
+install.packages("tidyverse")
+install.packages("devtools")
+install.packages("learnr")
+install.packages("xaringan")
+install.packages("gapminder")
 ```
-r-<YYYY>-<MM>-<DD>
+
+To install the additional packages run:
+```R
+library(devtools)
+install_github("asgr/Rwcs")
+install_github("asgr/Rfits")
 ```
-
-where YYYY-MM-DD is a snapshot at MRAN that will be used for installing 
-libraries. In this line, you can request a [specific 
-version of R](https://github.com/jupyter/repo2docker/pull/772#issue-313426641). To do this list the version between the 'r' 
-and the year, as in `r-3.6-2019-09-24`. Right now the default version of R is 3.6.
-
-You also need a Python notebook file such as [this one](https://github.com/binder-examples/r/blob/master/index.ipynb).
-
-You can also have an `install.R` file that will be executed during build, and can be used to install libraries.
-
-Both [RStudio](https://www.rstudio.com/) and [IRKernel](https://irkernel.github.io/)
-are installed by default, so you can use either the Jupyter notebook interface or
-the RStudio interface.
-
-This repository also contains an example of a Shiny app.
-
-Last, note that if your Binder URL points to a folder, as in 
-
-http://mybinder.org/v2/gh/binder-examples/r/master?urlpath=shiny/bus-dashboard/,
-
-you will need (1) to put in the final slash in the URL, and (2) to avoid converted 
-spaces-'%20'-in the URL, instead placing a hyphen.
-
-**Note:** An alternative is to use the excellent [holepunch package for R](https://karthik.github.io/holepunch/articles/getting_started.html).
