@@ -1,25 +1,22 @@
 ---
-title: "Introduction to R for astronomy"
+title: "Introduction to R"
 author: "Rebecca Lange"
 institute: "ADACS + CIC"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
+    css: [default, ninjutsu, metropolis]
+    # chakra: libs/remark-latest.min.js # uncomment to use offfline
     nature:
-       beforeInit: "macros.js"
-       highlightStyle: github
-       countIncrementalSlides: false
-       highlightLines: true
+     beforeInit: "macros.js"
+     highlightStyle: github
+     countIncrementalSlides: false
+     # highlightLines: true
+       
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
-```
-
-# Why ![:scale 8%](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png) + ![:scale 16%](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg) `r emo::ji("star")`
-
-( `r emo::ji("star")` may be a slightly biased)
-
 --
 
 - free, open source
@@ -33,17 +30,26 @@ library(tidyverse)
 
 - great package ecosystem
 --
+=======
+
+- great package ecosystem
+>>>>>>> upstream/master
 
 - as a researcher (not developer) I find the syntax easy to understand
 --
 
-- RStudio 
+- great graphics from static to interactive plots, animations, R Shiny
+
+- `markdown` support for creating report/slides/books...
+
+- The `tidyverse` and pipes ` %>% `
 --
 
+- RStudio 
+--
+  
   - It's a great IDE with many features to make your life easy
   - RStudio employes developers who create and continiously support/maintain/develop major packages in the R ecosystem
-  - The `tidyverse` and pipes ` %>% `
-  - `markdown` support for creating report/slides/books...
 
 ---
 class: inverse, center, middle
@@ -56,6 +62,24 @@ class:center, middle
 Let's have a quick [tour](https://github.com/CurtinIC/cic-swc-material/blob/master/RStudio_interface.pdf) of the RStudio interface.
 
 ---
+# R projects <sup>*</sup>
+.pull-left[
+- A way to keep all files (scripts, inputs, figures) associated with a project organized in one place
+
+- Many useful options for saving your R history or environment
+
+- keeps your files and scripts in a centralized working directory
+
+- allows for version control and portability
+]
+.pull-right[
+![:scale 50%](https://raw.githubusercontent.com/will-r-chase/blog/master/static/slides/slide_img/open_project.png)
+
+![:scale 60%](https://raw.githubusercontent.com/will-r-chase/blog/master/static/slides/slide_img/R_project.png)
+]
+.footnote[ <sup>*</sup> [What I wish I knew when I started R](https://www.williamrchase.com/slides/intro_r_anthropology_2018) - William Chase]
+
+---
 class: inverse, center, middle
 
 # R Basics
@@ -64,61 +88,321 @@ class: inverse, center, middle
 
 # Objets
 
----
+Values and data are stored in objects.
+R uses a special assignment operator `<-`
 
-# Vectors
-
----
-
-# Data Types
-
----
-
-# Lists
-
----
-
-# Packages
-
----
-
-# R Code
-
-Models for `lm` are specified symbolically. A typical model has the form `response ~ terms` where `response` is the (numeric) response vector and `terms` is a series of terms which specifies a linear predictor for `response`. 
-
-For more info check out the documentation with `?lm`.
-
-```{r comment='#'}
-# a boring regression
-fit = lm(dist ~ speed, data = cars)
-coef(summary(fit))
+```{r}
+a <- 5
 ```
 
+## Special Values
+
+- Missing Values: `NA` (Not Available)
+- Not a Number `NaN`, e.g. `0/0`
+- Infinity `Inf`, e.g. `1/0`
 
 ---
+.pull-left[
+# Data Types
 
+-    character: `"a"`, `"swc"`
+-    numeric: `2`, `15.5`
+-    integer: `2L` (the L tells R to store this as an integer)
+-    logical: `TRUE`, `FALSE`, or for the lazy typer, `T`, `F`
+-    complex: `1+4i` (complex numbers with real and imaginary parts)
+]
+.pull-right[
+# Data Structures
+
+R has many data structures. These include
+
+-    atomic vector
+-    matrix
+-    list
+-    data frame
+-    factors
+]
+---
+# Vectors
+
+.pull-left[
+To create vectors use the `c()` function to concatinate values.
+
+```{r}
+a <- c(5,4,1:3)
+a
+```
+
+Vectors will coerce all elements to the same type
+```{r}
+a <- c(T,F,3,2,1)
+b <- c(a,'4')
+b
+```
+]
+
+.pull-right[
+# Matrix
+In R matrices are an **extension of the numeric or character vectors**. 
+
+They are not a separate type of object but simply an atomic vector with dimensions; the number of rows and columns. 
+
+As with atomic vectors, the elements of a matrix must be of the same data type.<sup>*</sup>
+
+```{r}
+m <- matrix(data = 1:4, nrow = 2, ncol = 2)
+m
+```
+.footnote[<sup>*</sup>[SWC Intro to R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)]
+]
+
+---
+# Lists
+
+.pull-left[
+Lists are recurring vectors, that is each element of a list can be of a different data type
+```{r}
+x <- list(c(1,2), "a", TRUE, 1+4i)
+x
+```
+]
+
+.pull-right[
+Elements of a list can be named
+
+```{r}
+xlist <- list(a = "Karthik Ram", 
+              b = 1:10, 
+              data = head(iris))
+xlist
+```
+]
+---
+# Data Frame
+.pull-left[
+A dataframe is secial type of list where each element:
+- is of the same length
+- contains the same data type
+- is named
+
+This is results in a 2-D data structure like a spreadsheet or SQL table:
+```{r}
+dat <- data.frame(id = letters[1:10], x = 1:10, y = 11:20)
+dat
+```
+
+]
+
+.pull-right[
+#Tibble
+
+The tidyverse version of a dataframe.
+To quote the [documentation](https://cran.r-project.org/web/packages/tibble/vignettes/tibble.html):
+> They keep the features that have stood the test of time, and drop the features that used to be convenient but are now frustrating (i.e. converting character vectors to factors).
+
+```{r}
+as.tibble(dat)
+```
+]
+---
+# Factors
+Factors represent **categorical data** and can be ordered or unordered.
+
+Factors are **stored as integers**, and have labels associated with these unique integers. 
+
+Once created, factors can only contain a **pre-defined set values**, known as **levels**. By default, R always sorts levels in alphabetical order:
+
+```{r}
+food <- factor(c("low", "high", "medium", "high", "low", "medium", "low"))
+levels(food)
+food <- factor(food, levels = c("low", "medium", "high"))
+levels(food)
+```
+
+.footnote[[SWC factor lesson](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html)]
+---
+# Packages - CRAN
+![cran-img](img/cran.png)
+---
+# Packages - Github
+![github-img](img/github.png)
+
+---
+# Tidyverse
+![tidy-img](img/tidyverse.png)
+
+---
+# Tidyverse
+![tidy-img](img/tidy-packages.png)
+
+```{r, eval=F, echo=F}
+
+# ---
+# Tidy Data
+
+# ![img](img/tidy-data.png)
+```
+
+---
+# R Code
+
+## Functions
+You call functions in R with `functioname(arg1,arg,...)`
+
+- R offers *tab completion* for functions. 
+- In RStudio: once the cursor is inside the round brackets you can press tab again to see the argument options available.
+- The output of the function will be printed to screen, unless you save the output to an object.
+
+```{r } 
+a <- runif(5)
+a
+```
+
+- R is *vectorised* and most functions will work on simple vectors by evaluating each element.
+
+```{r } 
+sqrt(a)
+```
+
+---
+# Example
+```{r, echo=F}
+knitr::kable(head(mpg), format = 'html')
+```
+
+```{r comment='#'}
+# a boring regression - written as y proportional to x
+fit = lm(hwy ~ displ, data = mpg)
+coef(summary(fit))
+```
+---
 # R Plots - base R
 
 ```{r cars, fig.height=4, dev='svg'}
-par(mar = c(4, 4, 1, .1))
-plot(cars, pch = 19, col = 'darkgray', las = 1)
+plot(mpg$displ, mpg$hwy, 
+     xlab = "Engine Displacement", ylab = "Hwy MPG",  
+     pch = 19, col = 'darkgray', las = 1)
+
 abline(fit, lwd = 2)
 ```
 
-
 ---
-
 # R Plots - ggplot2
 
-```{r , fig.height=4, dev='svg'}
+```{r, eval=FALSE}
 
-ggplot(data = cars, aes(x = speed, y = dist)) + 
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
   geom_point() +
   geom_smooth(method = lm, se = FALSE)
 
 ```
 
+```{r , fig.height=4, dev='svg', echo=F}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)+
+  xlim(c(min(mpg$displ),7.1))
+```
+---
+# R Plots - ggplot2
+```{r, eval=FALSE}
 
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+
+```
+
+```{r , fig.height=4, dev='svg', echo=FALSE}
+
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE)+
+  xlim(c(min(mpg$displ),7.1)) +
+  annotate("path",
+           x=6+1.05*cos(seq(0,2*pi,length.out=100)),
+           y=24+3*sin(seq(0,2*pi,length.out=100)), colour = "red", size = 1.2) 
+```
+
+---
+# R Plots - ggplot2
+```{r, eval=FALSE}
+ggplot(data = mpg, aes(x = displ, y = hwy, colour = class)) + 
+  geom_point()
+```
+
+```{r , fig.height=4, dev='svg', echo=FALSE}
+
+ggplot(data = mpg, aes(x = displ, y = hwy, colour = class)) + 
+  geom_point() +
+  xlim(c(min(mpg$displ),7.1))
+```
+---
+# R Plots - ggplot2
+```{r, fig.height=5}
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+---
+# R Plots - ggplot2
+```{r, fig.height=5}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() + 
+  scale_x_log10()
+```
+---
+# R Plots - ggplot2
+```{r, fig.height=5}
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point(alpha=0.5) + 
+  scale_x_log10() +
+  facet_wrap(~continent)
+```
+
+---
+class:center, middle
+
+Explore more ggplot goodness in this [flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1)
+
+---
+# Transform data with the Tidyeverse
+
+.pull-left[
+## ![:scale 20%](img/dplyr.png)
+
+`select()` - extract .blue[variables] (i.e. by column names)
+
+`filter()` - extract .green[cases]
+
+`arrange()` - reorder .green[cases]
+
+`summarise()` - summarise .blue[variables]
+
+`group_by()` - group .green[cases]
+
+`mutate()` - create new .blue[variables]
+]
+.pull-right[
+## Pipe %>% 
+
+1.	 Filter babynames to just boys born in 2015
+2.	 Select the name and n columns from the result
+3.	 Arrange those columns so that the most popular names appear near the top.
+
+![pipe-img](img/pipe.png)
+
+![:scale 80%](img/pipe-short.png)
+]
+
+---
+# Tidy data
+.center[
+![:scale 70%](img/group-sum.png) 
+]
+--
+.center[
+![:scale 70%](img/mutate.png)
+]
 ---
 # R for astronomy
 
@@ -129,28 +413,38 @@ https://github.com/hwborchers/zaRastro
 https://github.com/asgr?tab=repositories
 
 ---
+# Call Python from R ![:scale 10%](https://rstudio.github.io/reticulate/images/reticulated_python.png) 
 
-# Calling Python from R
+`Reticulate` package: https://rstudio.github.io/reticulate/
 
-something
-
---
-# and vice versa
-
-sometingh else
-
+```{r, eval=F}
+library(reticulate)
+# Specify Python version
+use_python("/usr/local/bin/python")
+# use virtualenv
+use_virtualenv("myenv")
+# use conda env
+use_condaenv("myenv")
+```
+![:scale 50%](img/type-conversion.png)
 ---
 # Tutorials
 
-Follow the `learnr` examples in the repo >
+Follow the `learnr` examples in the Tutorials folder:
 - open the Rmd file you are interested in
 - click the `Run Document` button at the top
 
-## Cheatsheets
+The `learnr` tutorials are a selection of the primers developed by RStudio for rstudio.cloud.
+
+You can find them all on github: https://github.com/rstudio-education/primers or by visiting https://rstudio.cloud/ 
+
+**Cheatsheets**
 
 https://rstudio.com/resources/cheatsheets/ 
 
-## External
+### External - Penn State Astrostats
 
+https://astrostatistics.psu.edu/datasets/index.html
+
+Labs from the summer school for astrostats X - 2014
 https://astrostatistics.psu.edu/RLectures/R_tutorials.pdf
-

@@ -30,3 +30,4 @@ int main(void){
     for (auto &val:cumsum) cout<<val<<" ";
     cout<<endl;
 }
+

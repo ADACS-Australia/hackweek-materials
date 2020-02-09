@@ -18,9 +18,10 @@ int main() {
     }
     for (auto j=0;j<NT;j++) pthread_join(t[j], NULL);
     if (Global!= oldGlobal) {
-      printf("Issue after %d iteration have %d\n",i, Global);
+      printf("Issue after %d iteration have %d instead of %d \n",i, Global, oldGlobal);
       break;
     }
   }
 }
+
 
