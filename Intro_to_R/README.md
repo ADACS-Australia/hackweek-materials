@@ -6,6 +6,12 @@ RStudio: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v
 
 ---
 
+This session includes slides (made using R markdown) and tutorials. The tutorials are a selection of the primers developed by RStudio for rstudio.cloud. All credits go to them.
+
+You can find them all on github: https://github.com/rstudio-education/primers or by visiting https://rstudio.cloud/
+
+
+
 ## Requirements
 
 You will need R (the programming language) and preferably RStudio (an IDE for R) installed.
@@ -16,13 +22,23 @@ You will need R (the programming language) and preferably RStudio (an IDE for R)
 The packages we will use throughout the tutorial are:
 - tidyverse
 - devtools
-- Rwcs
+- learnr
+- xaringan
+- gapminder
+additional:
 - Rfits
+- Rwcs
 
 To install these open RStudio and type the following in the panel called 'Console':
 
 install.packages("tidyverse")
 install.packages("devtools")
+install.packages("learnr")
+install.packages("xaringan")
+install.packages("gapminder")
+
+To isntall the additional packages run:
+
 library(devtools)
 install_github("asgr/Rwcs")
 install_github("asgr/Rfits")
