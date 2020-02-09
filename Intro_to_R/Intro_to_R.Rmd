@@ -60,6 +60,24 @@ class:center, middle
 Let's have a quick [tour](https://github.com/CurtinIC/cic-swc-material/blob/master/RStudio_interface.pdf) of the RStudio interface.
 
 ---
+# R projects <sup>*</sup>
+.pull-left[
+- A way to keep all files (scripts, inputs, figures) associated with a project organized in one place
+
+- Many useful options for saving your R history or environment
+
+- keeps your files and scripts in a centralized working directory
+
+- allows for version control and portability
+]
+.pull-right[
+![:scale 50%](https://raw.githubusercontent.com/will-r-chase/blog/master/static/slides/slide_img/open_project.png)
+
+![:scale 60%](https://raw.githubusercontent.com/will-r-chase/blog/master/static/slides/slide_img/R_project.png)
+]
+.footnote[ <sup>*</sup> [What I wish I knew when I started R](https://www.williamrchase.com/slides/intro_r_anthropology_2018) - William Chase]
+
+---
 class: inverse, center, middle
 
 # R Basics
@@ -127,13 +145,13 @@ In R matrices are an **extension of the numeric or character vectors**.
 
 They are not a separate type of object but simply an atomic vector with dimensions; the number of rows and columns. 
 
-As with atomic vectors, the elements of a matrix must be of the same data type.<sup>1</sup>
+As with atomic vectors, the elements of a matrix must be of the same data type.<sup>*</sup>
 
 ```{r}
 m <- matrix(data = 1:4, nrow = 2, ncol = 2)
 m
 ```
-.footnote[1 - [SWC Intro to R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)]
+.footnote[<sup>*</sup>[SWC Intro to R](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)]
 ]
 
 ---
@@ -214,12 +232,16 @@ levels(food)
 ---
 # Tidyverse
 ![tidy-img](img/tidy-packages.png)
----
+
+```{r, eval=F, echo=F}
+
+# ---
 # Tidy Data
 
-![img](img/tidy-data.png)
----
+# ![img](img/tidy-data.png)
+```
 
+---
 # R Code
 
 ## Functions
@@ -252,7 +274,6 @@ fit = lm(hwy ~ displ, data = mpg)
 coef(summary(fit))
 ```
 ---
-
 # R Plots - base R
 
 ```{r cars, fig.height=4, dev='svg'}
