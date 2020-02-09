@@ -17,7 +17,7 @@ To run code on ozstar, please try the following:
 Login to username@ozstar.swin.edu.au
 cd /fred/oz980/ADACS/HPC/PLAYGROUND
 mkdir usersname
-source /fred/oz980/ADACS/HPC/example/modulelist.sh
+source /fred/oz980/ADACS/HPC/examples/scripts/modulelist.sh
 ```
 
 This will setup your environment to load an appropriate list of modules. We will then try compiling some examples and try out some code. 
