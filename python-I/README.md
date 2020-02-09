@@ -18,47 +18,11 @@ If you would like to review some of the basics of Python, check out the [Intro t
 * Coding standards and best practices
 * Cool tools
 
-The idea here is to make sure that 
+## Notebooks
 
-Here is a more detailed look at the outline:
+* [Intro](Python%20I%20-%20Intro.ipynb)
+* [Markdown](Python%20I%20-%20Markdown.ipynb)
+* [Serialization](Python%20I%20-%20Serialization.ipynb)
 
-<details>
-  <summary>Click here for detailed outline</summary>
+Break
 
-* Abstraction
-  * DRY Principle.
-  * Don't hard-code.
-  
-* Coding standards and best practices
-  * In other words, "How I learned to stop worrying and trust my editor".
-    * PEP8
-    * pycodestyle
-    * _Conform to the project you are working on._
-  * Setting up your editor (on your own time).
-    * Formatting
-    * Errors
-
-* Tools:
-  * Jupyter notebooks / running the code for the week.
-  * Markdown
-  * Serialization
-    * YAML (humans)
-    * JSON (computers)
-  * Markdown
-
-* Cool tools:
-  * Language:
-    * `collections` module.
-    * List comprehensions
-    * Functions
-      * Closure
-    * Lambda
-    * Global variables (don't do it)
-  * Packages
-    * Astropy
-    * [Pandas](https://pandas.pydata.org/) / [xarray](http://xarray.pydata.org/en/stable/)
-    * [Seaborn](seaborn.pydata.org/s)
-  * Scripts
-    * [click](https://click.palletsprojects.com/en/7.x/)
-
-</details>

@@ -1,0 +1,6 @@
+location:
+    name: Siding Spring Observatory
+    latitude: -31.275 # Degrees
+    longitude: +149.069 # Degrees
+    elevation: 1000.0 # Meters
+    timezone: Australia/Sydney
