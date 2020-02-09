@@ -12,7 +12,7 @@ While the name of this session is Python I, this is not necessarily an introduct
 
 If you would like to review some of the basics of Python, check out the [Intro to Python](IntroPython/IntroPython.ipynb) notebook.
 
-## Outline
+## Things to learn
 
 * Abstraction
 * Coding standards and best practices
