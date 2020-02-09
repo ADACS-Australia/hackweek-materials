@@ -1,4 +1,7 @@
 # hackweek-materials
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ADACS-Australia/hackweek-materials/)
+
 Collection of tutorials and materials for the 2020 ADACS astrocomp hack week.
 
 Below you'll find some general information\instructions (or links to this) for each tutorial. Note, this info will be updated over time and is currently WIP.
@@ -22,7 +25,7 @@ You can follow installation instruction from The Carpentries: https://carpentrie
 - PuTTY or similar to ssh to OzStar, see the OzStar documentation for info on accessing the system: https://supercomputing.swin.edu.au/docs/1-getting_started/Access.html 
 
 ## Python I
-https://github.com/ADACS-Australia/hackweek-materials/tree/master/python-I
+See [README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/python-I)
 
 ## Intro to R
 https://github.com/ADACS-Australia/hackweek-materials/tree/master/Intro_to_R
