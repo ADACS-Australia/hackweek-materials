@@ -28,13 +28,13 @@ You can follow installation instruction from The Carpentries: https://carpentrie
 See [README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/python-I)
 
 ## Intro to R
-https://github.com/ADACS-Australia/hackweek-materials/tree/master/Intro_to_R
+[README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/Intro_to_R/README.md)
 
 ## Querying VOs and Data Management
 TBC
 
 ## Intro to Version Control
-TBC
+https://github.com/ADACS-Australia/hackweek-materials/tree/master/version_control
 
 ## Python II
 See [README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/python-II/README.md)
@@ -43,7 +43,7 @@ See [README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/p
 https://github.com/ADACS-Australia/hackweek-materials/tree/master/software-dev
 
 ## Intro to HPC
-https://github.com/ADACS-Australia/hackweek-materials/tree/master/hpc-pelahi
+[README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/hpc-pelahi/README.md)
 
 ## Intro to ML
-TBC
+[README](https://github.com/ADACS-Australia/hackweek-materials/tree/master/Intro-to-ML/README.md)
